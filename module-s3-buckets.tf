@@ -1,6 +1,16 @@
 resource "aws_s3_bucket" "static_site_logs" {
   bucket = var.bucket_name_logs
   acl    = "log-delivery-write"
+
+  lifecycle_rule {
+    id      = "log"
+    prefix  = "log/"
+    enabled = true
+
+    expiration {
+      days = 30
+    }
+  }
 }
 
 resource "aws_s3_bucket" "static_site" {
@@ -8,7 +18,7 @@ resource "aws_s3_bucket" "static_site" {
 
   logging {
     target_bucket = aws_s3_bucket.static_site_logs.bucket
-    target_prefix = ""
+    target_prefix = "log/"
   }
 
   website {
