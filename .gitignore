@@ -1,2 +1,4 @@
 vars/east*
 vars/west*
+terraform.tfstate*
+.terraform
