@@ -8,8 +8,12 @@ resource "aws_s3_bucket" "static_site_logs" {
     enabled = true
 
     expiration {
-      days = 30
+      days = 7
     }
+  }
+
+  versioning {
+    enabled = false
   }
 }
 
@@ -24,6 +28,10 @@ resource "aws_s3_bucket" "static_site" {
   website {
     index_document = "index.html"
     error_document = "error.html"
+  }
+
+  versioning {
+    enabled = false
   }
 }
 
