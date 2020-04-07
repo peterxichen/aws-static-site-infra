@@ -1,3 +1,4 @@
+app/
 vars/east*
 vars/west*
 terraform.tfstate*
